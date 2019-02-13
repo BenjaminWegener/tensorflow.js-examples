@@ -95,14 +95,14 @@ async function train(){
 	fetch(url)
 	.then(res => res.blob())
 	.then(blob => {
-		window.json = new File([blob], "srfcnn.json");
+		window.json = new File([blob], "srfcnn17.json");
 	});
 	delete url;
 	url = 'data:application/octet-stream;base64,' + window.weights_bin;
 	fetch(url)
 	.then(res => res.blob())
 	.then(blob => {
-		window.weights = new File([blob], "srfcnn.weights.bin")
+		window.weights = new File([blob], "srfcnn17.weights.bin")
 	});
 	delete url;
 	while ((window.json == 'empty')&&(window.weights == 'empty')){await sleep(100)}
