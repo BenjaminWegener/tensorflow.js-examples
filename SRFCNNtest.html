@@ -134,15 +134,10 @@ await sleep(100);
 					return tf.squeeze(model.predict(tf.stack(enhanceArrayDummy)),[0]);
 				});				
 				predictedEnhancedImage = tf.div(
-					tf.sub(
-						predictedEnhancedImage, 
-						tf.min(predictedEnhancedImage)
+					tf.sub(predictedEnhancedImage, 
+						0
 					), 
-					tf.sub(
-						tf.max(predictedEnhancedImage), 
-						tf.min(predictedEnhancedImage)
-					)
-				);
+				256).clipByValue(0, 1);
 var t2 = performance.now();
 document.getElementById('log').innerHTML = 'inference took ' + (t2-t1).toFixed(2) + 'ms...';
 				tf.toPixels(predictedEnhancedImage,enhancedImage);
